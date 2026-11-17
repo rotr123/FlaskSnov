@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Met kocke 🎲</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            color: white;
+            overflow: hidden;
+
+            background:
+                radial-gradient(circle at 20% 20%, #34206c 0%, transparent 35%),
+                radial-gradient(circle at 80% 80%, #102e64 0%, transparent 35%),
+                #080b18;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(#ffffff25 1px, transparent 1px);
+            background-size: 35px 35px;
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            width: min(90%, 650px);
+            padding: 65px 35px;
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.5),
+                0 0 50px rgba(120, 70, 255, 0.12);
+
+            animation: appear 1s ease;
+        }
+
+        .subtitle {
+            color: #a99bff;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(35px, 7vw, 55px);
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 35px;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #b7a2ff,
+                #70d9ff
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .dice {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 150px;
+            height: 150px;
+
+            border-radius: 30px;
+            margin: 10px auto 35px;
+
+            font-size: 85px;
+            font-weight: 900;
+            color: white;
+
+            background: linear-gradient(
+                145deg,
+                #8d5cff,
+                #4a32c7
+            );
+
+            border: 2px solid rgba(255,255,255,0.3);
+
+            box-shadow:
+                0 15px 35px #633dff66,
+                inset 0 3px 8px #ffffff55,
+                inset 0 -8px 15px #24117b66;
+
+            animation: float 3s ease-in-out infinite;
+            transition: 0.3s;
+        }
+
+        .dice:hover {
+            transform: scale(1.12) rotate(5deg);
+            box-shadow:
+                0 20px 55px #784cff99,
+                inset 0 3px 8px #ffffff55;
+        }
+
+        .result-label {
+            color: #a9adc4;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .result {
+            font-size: clamp(25px, 5vw, 36px);
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 25px #8b67ff99;
+        }
+
+        .glow {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: #764dff;
+            filter: blur(100px);
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 45px 20px;
+            }
+
+            .dice {
+                width: 125px;
+                height: 125px;
+                font-size: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="glow"></div>
+
+        <div class="subtitle">⚡ Dice experience</div>
+
+        <h1>Met kocke</h1>
+
+        <div class="dice">
+            {{ kocka }}
+        </div>
+
+        <div class="result-label">Tvoj rezultat</div>
+
+        <div class="result">
+            Vrgel si: {{ kocka }}
+        </div>
+    </div>
+
+</body>
+</html>
