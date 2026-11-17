@@ -25,10 +25,14 @@ def dice2(N):
 
 @app.route("/spol")
 def spol():
-    sez = ["Ženska", "Moški"]
-    oseba = random.choice(sez)
+    moski = ["Luka", "Marko", "Jan", "Žan", "Miha"]
+    zenske = ["Ana", "Maja", "Eva", "Nika", "Lara"]
+
+    ime_m = random.choice(moski)
+    ime_z = random.choice(zenske)
     procent = random.randint(0, 100)
 
-    return render_template("spol.html", oseba=oseba, procent=procent)
+    return render_template("spol.html", ime_m=ime_m, ime_z=ime_z, procent=procent)
+
 
 app.run(debug=True)
