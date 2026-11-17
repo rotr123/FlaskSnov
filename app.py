@@ -23,9 +23,12 @@ def dice2(N):
     print(rnd)
     return render_template("copy.html", kocka = rnd)
 
-sez=[1,2,4]
-print(random.choice(sez))
+@app.route("/spol")
+def spol():
+    sez = ["Ženska", "Moški"]
+    oseba = random.choice(sez)
+    procent = random.randint(0, 100)
 
-
+    return render_template("spol.html", oseba=oseba, procent=procent)
 
 app.run(debug=True)
